@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { SignInButton, UserButton, useUser } from "@clerk/clerk-react";
 import { Authenticated, Unauthenticated } from "convex/react";
 import { useState } from "react";
@@ -57,6 +58,12 @@ const Navbar = () => {
       </div>
     </nav>
   );
+=======
+import "../styles/Navbar.css";
+
+const Navbar = () => {
+  return <>Navbar</>;
+>>>>>>> eacfd2dc359f9c84e994095f3e4ac485a4c1f322
 };
 
 export default Navbar;

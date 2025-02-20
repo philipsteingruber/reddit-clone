@@ -5,7 +5,10 @@
   right: 0;
   bottom: 0;
   z-index: 98;
+<<<<<<< HEAD
   background-color: rgba(0, 0, 0, 0.5);
+=======
+>>>>>>> eacfd2dc359f9c84e994095f3e4ac485a4c1f322
 }
 
 .create-dropdown {
@@ -75,4 +78,8 @@
 .option-content {
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> eacfd2dc359f9c84e994095f3e4ac485a4c1f322

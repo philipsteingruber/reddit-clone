@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 .create-community-modal-overlay {
+=======
+.modal-overlay {
+>>>>>>> eacfd2dc359f9c84e994095f3e4ac485a4c1f322
   position: fixed;
   top: 0;
   left: 0;
@@ -90,7 +94,11 @@ form {
   border: 1px solid #edeff1;
   border-radius: 4px;
   background-color: white;
+<<<<<<< HEAD
   color: black;
+=======
+  color: black
+>>>>>>> eacfd2dc359f9c84e994095f3e4ac485a4c1f322
 }
 
 .form-group input {
