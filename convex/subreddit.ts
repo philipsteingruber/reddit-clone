@@ -10,12 +10,12 @@ export const create = mutation({
   handler: async (ctx, args) => {
     const user = await getCurrentUserOrThrow(ctx);
 
-    const subreddits = await ctx.db.query("subreddit").collect();
+    const subreddits = await ctx.db.query("subreddits").collect();
     if (subreddits.some((s) => s.name === args.name)) {
       throw new ConvexError({ message: "Subreddit already exists." });
     }
 
-    await ctx.db.insert("subreddit", {
+    await ctx.db.insert("subreddits", {
       name: args.name,
       description: args.description,
       authorId: user._id,
@@ -27,7 +27,7 @@ export const get = query({
   args: { name: v.string() },
   handler: async (ctx, args) => {
     const subreddit = ctx.db
-      .query("subreddit")
+      .query("subreddits")
       .filter((q) => q.eq(q.field("name"), args.name))
       .unique();
     if (!subreddit) return null;
