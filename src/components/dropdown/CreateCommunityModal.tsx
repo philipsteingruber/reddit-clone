@@ -21,6 +21,7 @@ const CreateCommunityModal = ({
   if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log("Submitting form");
     e.preventDefault();
     setError("");
 
@@ -30,11 +31,13 @@ const CreateCommunityModal = ({
     }
     if (name.length < 3 || name.length > 21) {
       setError("Community name must be between 3 and 21 characters.");
+      return;
     }
     if (!/^[a-zA-Z0-9_]+$/.test(name)) {
       setError(
         "Community name can only contain letters, numbers and underscores."
       );
+      return;
     }
 
     setIsLoading(true);
@@ -45,6 +48,7 @@ const CreateCommunityModal = ({
       })
       .catch((err) => {
         setError(`Failed to create community. ${err.data.message}`);
+        console.log(err.data.message);
       })
       .finally(() => setIsLoading(false));
   };
@@ -59,7 +63,7 @@ const CreateCommunityModal = ({
             &times;
           </button>
         </div>
-        <form action="" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <div className="input-prefix">r/</div>
@@ -102,7 +106,6 @@ const CreateCommunityModal = ({
             <button
               type="submit"
               className="create-button"
-              onClick={onClose}
               disabled={isLoading}
             >
               {isLoading ? "Creating community..." : "Create Community"}

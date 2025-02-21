@@ -66,6 +66,7 @@ const CreateDropdown = ({ isOpen, onClose }: CreateDropdownProps) => {
           isOpen={isCommunityModalOpen}
           onClose={() => {
             setIsCommunityModalOpen(false);
+            console.log("Closing modal");
             onClose();
           }}
         />
