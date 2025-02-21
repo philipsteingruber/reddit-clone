@@ -19,8 +19,6 @@ const SubmitPage = () => {
 
   const createPost = useMutation(api.post.create);
 
-  const handleSubmit = (e: React.FormEvent) => {};
-
   if (subreddit === undefined) return <p>Loading...</p>;
 
   if (subreddit === null) {
@@ -33,6 +31,29 @@ const SubmitPage = () => {
       </div>
     );
   }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!title.trim() || !subreddit) {
+      alert("Please enter a title and select a subreddit");
+    }
+
+    try {
+      setIsSubmitting(true);
+      await createPost({
+        subject: title.trim(),
+        body: body.trim(),
+        subreddit: subreddit._id,
+      });
+      navigate(`/r/${subreddit.name}`);
+    } catch (error) {
+      console.log(error);
+      alert("Failed to create post. Please try again");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="content-container">
