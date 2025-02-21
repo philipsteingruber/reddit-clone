@@ -64,10 +64,26 @@ const SubmitPage = () => {
 
     try {
       setIsSubmitting(true);
+
+      let imageUrl = undefined;
+      if (selectedImage) {
+        const uploadUrl = await generateUploadUrl();
+        const result = await fetch(uploadUrl, {
+          method: "POST",
+          headers: { "Content-Type": selectedImage.type },
+          body: selectedImage,
+        });
+        if (!result.ok) throw new Error("Failed to upload image.");
+
+        const { storageId } = await result.json();
+        imageUrl = storageId;
+      }
+
       await createPost({
         subject: title.trim(),
         body: body.trim(),
         subreddit: subreddit._id,
+        storageId: imageUrl,
       });
       navigate(`/r/${subreddit.name}`);
     } catch (error) {
