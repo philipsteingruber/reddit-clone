@@ -51,6 +51,8 @@
   border-radius: 4px;
   padding: 16px;
   background-color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .image-upload-label {
@@ -65,6 +67,9 @@
   color: #1c1c1c;
   font-size: 14px;
   transition: background-color 0.2s;
+  max-width: 15%;
+  justify-items: center;
+  justify-content: center;
 }
 
 .image-upload-label:hover {
