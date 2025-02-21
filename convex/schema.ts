@@ -8,18 +8,20 @@ export default defineSchema({
   })
     .index("byExternalId", ["externalId"])
     .index("byUsername", ["username"]),
-  subreddits: defineTable({
+  subreddit: defineTable({
     name: v.string(),
     description: v.optional(v.string()),
     authorId: v.id("users"),
-  }),
-  posts: defineTable({
+  })
+    .index("byName", ["name"])
+    .searchIndex("search_body", { searchField: "name" }),
+  post: defineTable({
     subject: v.string(),
-    body: v.optional(v.string()),
-    subreddit: v.id("subreddits"),
-    author: v.id("users"),
+    body: v.string(),
+    subreddit: v.id("subreddit"),
+    authorId: v.id("users"),
     image: v.optional(v.id("_storage")),
   })
     .index("bySubreddit", ["subreddit"])
-    .index("byAuthor", ["author"]),
+    .index("byAuthor", ["authorId"]),
 });
