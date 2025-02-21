@@ -55,8 +55,8 @@ const CreateDropdown = ({ isOpen, onClose }: CreateDropdownProps) => {
               <FaPlus />
             </div>
             <div className="option-content">
-              <span className="option-title">Community</span>
-              <span className="option-description">Create a new community</span>
+              <span className="option-title">Subreddit</span>
+              <span className="option-description">Create a new subreddit</span>
             </div>
           </button>
         </div>
@@ -66,7 +66,6 @@ const CreateDropdown = ({ isOpen, onClose }: CreateDropdownProps) => {
           isOpen={isCommunityModalOpen}
           onClose={() => {
             setIsCommunityModalOpen(false);
-            console.log("Closing modal");
             onClose();
           }}
         />

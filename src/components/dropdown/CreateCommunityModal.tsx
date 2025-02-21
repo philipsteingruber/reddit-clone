@@ -1,5 +1,6 @@
 import { useMutation } from "convex/react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { api } from "../../../convex/_generated/api";
 import "../../styles/CreateCommunityModal.css";
 
@@ -18,10 +19,11 @@ const CreateCommunityModal = ({
   const [isLoading, setIsLoading] = useState(false);
   const createSubreddit = useMutation(api.subreddit.create);
 
+  const navigate = useNavigate();
+
   if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log("Submitting form");
     e.preventDefault();
     setError("");
 
@@ -45,10 +47,10 @@ const CreateCommunityModal = ({
       .then((result) => {
         console.log(result);
         onClose();
+        navigate(`/r/${name}`);
       })
       .catch((err) => {
         setError(`Failed to create community. ${err.data.message}`);
-        console.log(err.data.message);
       })
       .finally(() => setIsLoading(false));
   };
