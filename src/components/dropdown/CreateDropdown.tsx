@@ -22,6 +22,7 @@ const CreateDropdown = ({ isOpen, onClose }: CreateDropdownProps) => {
     if (currentSubreddit) {
       navigate(`/r/${currentSubreddit}/submit`);
     }
+    onClose();
   };
 
   const handleCreateCommunity = () => {
